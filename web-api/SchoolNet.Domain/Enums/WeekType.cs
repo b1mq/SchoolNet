@@ -4,10 +4,11 @@ using System.Text;
 
 namespace SchoolNet.Domain.Enums
 {
-   public enum UserRole
+    
+    public enum WeekType
     {
-        Admin  = 1,
-        Teacher = 2,
-        Student = 3
+        Both = 0,
+        A = 1,
+        B = 2
     }
 }

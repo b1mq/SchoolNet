@@ -4,10 +4,10 @@ using System.Text;
 
 namespace SchoolNet.Domain.Enums
 {
-   public enum UserRole
+    public enum AbsenceStatus
     {
-        Admin  = 1,
-        Teacher = 2,
-        Student = 3
+        Unentschuldigt = 0,
+        Entschuldigt = 1,
+        Attest = 2
     }
 }
