@@ -2,5 +2,5 @@
   <Project Path="SchoolNet.Application/SchoolNet.Application.csproj" />
   <Project Path="SchoolNet.Domain/SchoolNet.Domain.csproj" />
   <Project Path="SchoolNet.Infrastructure/SchoolNet.Infrastructure.csproj" />
-  <Project Path="web-api/web-api.csproj" />
+  <Project Path="web-api/SchoolNet.WebApi.csproj" />
 </Solution>
