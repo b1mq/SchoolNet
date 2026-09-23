@@ -13,18 +13,20 @@ namespace SchoolNet.Domain.Entities
         public int TeacherId { get; private set; }
         public DayOfWeek Day { get; private set; }
         public int? RoomId { get; private set; }
-        public string TimeSlot { get; private set; } = string.Empty;
+        public TimeOnly StartTime{ get; private set; } 
+        public TimeOnly EndTime { get; private set; }
         public bool isDeleted { get; private set; }
         protected Schedule() { }
-        private Schedule(int classSubjectId, int teacherId, int? roomId, DayOfWeek day, string timeSlot)
+        private Schedule(int classSubjectId, int teacherId, int? roomId, DayOfWeek day, TimeOnly startTime, TimeOnly endTime)
         {
             ClassSubjectId = classSubjectId;
             TeacherId = teacherId;
             RoomId = roomId;
             Day = day;
-            TimeSlot = timeSlot;
+            StartTime = startTime;
+            EndTime = endTime;
         }
-        public static ResultGeneric<Schedule> Create(int classSubjectId, int teacherId, int? roomId, DayOfWeek day, string timeSlot)
+        public static ResultGeneric<Schedule> Create(int classSubjectId, int teacherId, int? roomId, DayOfWeek day, TimeOnly startTime, TimeOnly endTime)
         {
             if (classSubjectId <= 0)
             {
@@ -41,9 +43,9 @@ namespace SchoolNet.Domain.Entities
                 return ResultGeneric<Schedule>.Failure("Room id can not be negative");
             }
 
-            if (string.IsNullOrWhiteSpace(timeSlot))
+            if (endTime <= startTime)
             {
-                return ResultGeneric<Schedule>.Failure("Time slot can not be empty");
+                return ResultGeneric<Schedule>.Failure("End time can not be lesser than startTime");
             }
 
             var schedule = new Schedule(classSubjectId, teacherId, roomId, day, timeSlot.Trim());

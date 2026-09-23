@@ -38,6 +38,7 @@ namespace SchoolNet.Domain.Entities
         public void SoftDelete()
         {
             isDeleted = true;
+            UpdateTimeStamp();
         }
     
     }

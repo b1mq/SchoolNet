@@ -5,7 +5,7 @@ using SchoolNet.Domain.Enums;
 using SchoolNet.Domain.Entities.Pattern_Repository;
 using SchoolNet.Domain.Entities.BaseEntitie;
 using SchoolNet.Domain.Interfaces.Common;
-namespace SchoolNet.Domain.Entities
+namespace SchoolNet.Domain.Entities.Spec
 {
     public class Abwesenheit:AbstractEntity,ISoftDeletable
     {

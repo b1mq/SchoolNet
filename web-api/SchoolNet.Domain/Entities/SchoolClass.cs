@@ -48,6 +48,10 @@ namespace SchoolNet.Domain.Entities
             {
                 return Result.Failure("This subject is already assigned to the class");
             }
+            if(classSubject.isDeleted)
+            {
+                return Result.Failure("Deleted class subject can not be assigned");
+            }
 
             _classSubjects.Add(classSubject);
             UpdateTimeStamp();
@@ -70,6 +74,7 @@ namespace SchoolNet.Domain.Entities
                 return Result.Failure("Student is already in this class");
             }
             _students.Add(user);
+            user.AssignToClass(Id);
             UpdateTimeStamp();
             return Result.Succes();
         }
@@ -81,6 +86,11 @@ namespace SchoolNet.Domain.Entities
             if (existingStudent == null)
             {
                 return Result.Failure("Student is not in this class");
+            }
+            var result = existingStudent.RemoveFromClass();
+            if(result.IsFailure)
+            {
+                return result;
             }
 
             _students.Remove(existingStudent);
