@@ -1,4 +1,6 @@
 
+using SchoolNet.Application;
+
 namespace web_api
 {
     public class Program
@@ -12,7 +14,7 @@ namespace web_api
             builder.Services.AddControllers();
             // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
             builder.Services.AddOpenApi();
-
+            builder.Services.AddApplication();
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
