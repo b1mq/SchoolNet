@@ -5,6 +5,7 @@ using SchoolNet.Domain.Entities.BaseEntitie;
 using SchoolNet.Domain.Entities.Pattern_Repository;
 using SchoolNet.Domain.Enums;
 using SchoolNet.Domain.Interfaces.Common;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace SchoolNet.Domain.Entities
 {
@@ -26,35 +27,40 @@ namespace SchoolNet.Domain.Entities
             } 
         }
         public string PasswordHash { get; private set; } = string.Empty;
+        public string Email { get; private set; } = string.Empty;
         public bool isDeleted { get; private set; } = false;
         public UserRole Role { get; private set; }
         public int? ClassId { get; private set; } // для учителей
         public SchoolClass? Class { get; private set; }
         protected User() { }
-        private User(string firstName, string lastName, DateOnly dateOfBirth, string passwordHash, UserRole role)
+        private User(string firstName, string lastName, DateOnly dateOfBirth, string passwordHash, UserRole role,string email)
         {
             FirstName = firstName;
             LastName = lastName;
             DateOfBirth = dateOfBirth;
             PasswordHash = passwordHash;
             Role = role;
+            Email = email;
         }
 
-        public static ResultGeneric<User> Create(string firstName, string lastName, DateOnly dateOfBirth, string passwordHash, UserRole role)
+        public static ResultGeneric<User> Create(string firstName, string lastName, DateOnly dateOfBirth, string passwordHash, UserRole role, string email)
         {
             if (string.IsNullOrWhiteSpace(firstName) || string.IsNullOrWhiteSpace(lastName))
             {
                 return ResultGeneric<User>.Failure("First and last names can not be empty");
             }
 
-            
+            if (string.IsNullOrWhiteSpace(email))
+            {
+                return ResultGeneric<User>.Failure("email  can not be empty");
+            }
 
             if (string.IsNullOrWhiteSpace(passwordHash))
             {
                 return ResultGeneric<User>.Failure("Password hash can not be empty");
             }
 
-            var user = new User(firstName.Trim(), lastName.Trim(),  dateOfBirth, passwordHash, role);
+            var user = new User(firstName.Trim(), lastName.Trim(),  dateOfBirth, passwordHash, role,email);
             return ResultGeneric<User>.Success(user);
         }
 

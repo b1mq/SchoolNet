@@ -4,5 +4,5 @@ using System.Text;
 
 namespace SchoolNet.Application.Dtos.ClassSubjectDtos
 {
-    public sealed record CreateClassSubjectDto(int ClassSubjectId, int SubjectId) { };
+    public sealed record CreateClassSubjectDto(int ClassId, int SubjectId) { };
 }

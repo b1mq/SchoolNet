@@ -4,7 +4,5 @@ using System.Text;
 
 namespace SchoolNet.Application.Dtos.Auth
 {
-    internal class LoginRequestDto
-    {
-    }
+    public sealed record LoginRequestDto(string Email, string Password);
 }

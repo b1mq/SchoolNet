@@ -4,5 +4,5 @@ using System.Text;
 
 namespace SchoolNet.Application.Dtos.ClassSubjectDtos
 {
-    public sealed record UpdateClassSubjectDto(int ClassSubjectId, int SubjectId) { };
+    public sealed record UpdateClassSubjectDto(int ClassId, int SubjectId) { };
 }

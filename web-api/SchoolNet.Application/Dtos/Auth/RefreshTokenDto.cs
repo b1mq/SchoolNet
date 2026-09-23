@@ -4,7 +4,5 @@ using System.Text;
 
 namespace SchoolNet.Application.Dtos.Auth
 {
-    internal class RefreshTokenDto
-    {
-    }
+    public sealed record RefreshTokenDto(string RefreshToken);
 }
