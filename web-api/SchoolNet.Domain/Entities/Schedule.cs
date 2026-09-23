@@ -48,16 +48,14 @@ namespace SchoolNet.Domain.Entities
                 return ResultGeneric<Schedule>.Failure("End time can not be lesser than startTime");
             }
 
-            var schedule = new Schedule(classSubjectId, teacherId, roomId, day, timeSlot.Trim());
+            var schedule = new Schedule(classSubjectId, teacherId, roomId, day, startTime, endTime);
             return ResultGeneric<Schedule>.Success(schedule);
         }
-        public Result UpdateTimeSlot(string newTimeSlot)
+        public Result UpdateTime(TimeOnly startTime, TimeOnly endTime)
         {
-            if(string.IsNullOrWhiteSpace(newTimeSlot))
-            {
-                return Result.Failure("New time slot can not be empty");
-            }
-            TimeSlot = newTimeSlot.Trim();
+
+            StartTime = startTime;
+            EndTime = endTime;
             UpdateTimeStamp();
             return Result.Succes();
         }
