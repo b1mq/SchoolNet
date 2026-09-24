@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using SchoolNet.Domain.Entities;
+using SchoolNet.Domain.Interfaces.Repository.CommonRepositories;
 namespace SchoolNet.Domain.Interfaces.Repository
 {
     public interface IUserRepository:IRepository<User>

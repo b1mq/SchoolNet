@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using SchoolNet.Domain.Interfaces.Repository;
+using SchoolNet.Domain.Interfaces.Repository.CommonRepositories;
 using SchoolNet.Infrastructure.Persistence;
 
-namespace SchoolNet.Infrastructure.Repositories
+namespace SchoolNet.Infrastructure.Repositories.CommonRepositories
 {
     public  class UnitOfWork:IUnitOfWork
     {

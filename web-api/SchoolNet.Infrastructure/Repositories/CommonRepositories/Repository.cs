@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Text;
 using Microsoft.EntityFrameworkCore;
 using SchoolNet.Domain.Entities.BaseEntitie;
-using SchoolNet.Domain.Interfaces.Repository;
+using SchoolNet.Domain.Interfaces.Repository.CommonRepositories;
 using SchoolNet.Infrastructure.Persistence;
 
-namespace SchoolNet.Infrastructure.Repositories
+namespace SchoolNet.Infrastructure.Repositories.CommonRepositories
 {
     public class Repository<TEntity>:IRepository<TEntity> where TEntity : AbstractEntity
     {

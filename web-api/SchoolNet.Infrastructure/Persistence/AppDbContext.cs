@@ -19,6 +19,8 @@ namespace SchoolNet.Infrastructure.Persistence
         public DbSet<ClassSubject> ClassSubjects => Set<ClassSubject>();
         public DbSet<Schedule> Schedules => Set<Schedule>();
         public DbSet<Grade> Grades => Set<Grade>();
+        public DbSet<Homework> Homeworks => Set<Homework>();
+        public DbSet<Abwesenheit> Abwesenheits => Set<Abwesenheit>();
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);

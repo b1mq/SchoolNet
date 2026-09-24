@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace SchoolNet.Domain.Interfaces.Repository
+namespace SchoolNet.Domain.Interfaces.Repository.CommonRepositories
 {
     public interface IUnitOfWork
     {

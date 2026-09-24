@@ -5,6 +5,7 @@ using SchoolNet.Domain.Entities;
 using SchoolNet.Domain.Interfaces.Repository;
 using SchoolNet.Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
+using SchoolNet.Infrastructure.Repositories.CommonRepositories;
 namespace SchoolNet.Infrastructure.Repositories
 {
     public sealed class UserRepository:Repository<User>,IUserRepository
