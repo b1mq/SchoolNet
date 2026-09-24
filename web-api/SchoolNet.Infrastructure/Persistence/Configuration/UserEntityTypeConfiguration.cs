@@ -6,19 +6,18 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using SchoolNet.Domain.Entities;
 namespace SchoolNet.Infrastructure.Persistence.Configuration
 {
-    public sealed class UserEntityTypeConfiguration:IEntityTypeConfiguration<User>
+    public sealed class UserEntityTypeConfiguration: BaseEntityTypeConfiguration<User>
     {
-        public void Configure(EntityTypeBuilder<User> builder)
+        public override void Configure(EntityTypeBuilder<User> builder)
         {
-            builder.HasKey(x => x.Id);
+            base.Configure(builder);
+          
             builder.Property(x => x.FirstName).IsRequired();
             builder.Property( x => x.LastName).IsRequired();
             builder.HasIndex(x => x.Email).IsUnique();
             builder.Property(x => x.Role).IsRequired();
             builder.Property(x => x.Age).IsRequired();
             builder.Property(x => x.DateOfBirth).IsRequired();
-            builder.Property(x => x.CreatedAt).IsRequired();
-            builder.Property(x => x.UpdatedAt).IsRequired();
             builder.Property(x => x.PasswordHash).IsRequired();
         }
     }
