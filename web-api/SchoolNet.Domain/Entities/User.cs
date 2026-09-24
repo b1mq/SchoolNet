@@ -18,13 +18,14 @@ namespace SchoolNet.Domain.Entities
             {
                 var today = DateOnly.FromDateTime(DateTime.UtcNow);
                 var age = today.Year - DateOfBirth.Year;
-                if(DateOfBirth > today.AddYears(-age))
+                if (DateOfBirth > today.AddYears(-age))
                 {
                     age--;
                 }
                 return age;
 
             } 
+            
         }
         public string PasswordHash { get; private set; } = string.Empty;
         public string Email { get; private set; } = string.Empty;
@@ -32,6 +33,8 @@ namespace SchoolNet.Domain.Entities
         public UserRole Role { get; private set; }
         public int? ClassId { get; private set; } // для учителей
         public SchoolClass? Class { get; private set; }
+        public string? RefreshTokenHash { get; private set; } 
+        public DateTime? RefreshTokenExpiryTime { get; private set; }
         protected User() { }
         private User(string firstName, string lastName, DateOnly dateOfBirth, string passwordHash, UserRole role,string email)
         {
@@ -63,7 +66,30 @@ namespace SchoolNet.Domain.Entities
             var user = new User(firstName.Trim(), lastName.Trim(),  dateOfBirth, passwordHash, role,email);
             return ResultGeneric<User>.Success(user);
         }
+        public Result UpdateRefreshToken(string refreshTokenHash,DateTime expireTime)
+        {
+            if (string.IsNullOrWhiteSpace(refreshTokenHash))
+            {
+                return Result.Failure("Refresh token hash cannot be empty");
+            }
 
+            if (expireTime <= DateTime.UtcNow)
+            {
+                return Result.Failure("Expiry time must be in the future");
+            }
+            RefreshTokenHash = refreshTokenHash;
+            RefreshTokenExpiryTime = expireTime;
+            UpdateTimeStamp();
+            return Result.Succes();
+
+        }
+        public Result RevokeRefreshToken()
+        {
+            RefreshTokenHash = null;
+            RefreshTokenExpiryTime = null;
+            UpdateTimeStamp();
+            return Result.Succes();
+        }
         public Result AssignToClass(int classId)
         {
             if (classId <= 0)

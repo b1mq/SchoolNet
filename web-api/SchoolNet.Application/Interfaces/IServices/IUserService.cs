@@ -8,7 +8,9 @@ namespace SchoolNet.Application.Interfaces.IServices
 {
     public interface IUserService
     {
-        Task<Result> AddNewUserAsync(UserDto dto);
+        Task<Result> AddNewUser(UserDto dto);
+        Task<Result> UpdateUser(UpdateUserDto dto);
+        Task<Result> RemoveUser(UserDto dto);
         Task<ResultGeneric<UserDto>> GetUserByIdAsync(int id, CancellationToken cancellationToken = default);
         Task<ResultGeneric<UserDto>> GetUserByEmail(string email, CancellationToken cancellationToken = default);
     }

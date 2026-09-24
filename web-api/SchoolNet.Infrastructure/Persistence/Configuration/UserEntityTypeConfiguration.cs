@@ -16,9 +16,14 @@ namespace SchoolNet.Infrastructure.Persistence.Configuration
             builder.Property( x => x.LastName).IsRequired();
             builder.HasIndex(x => x.Email).IsUnique();
             builder.Property(x => x.Role).IsRequired();
-            builder.Property(x => x.Age).IsRequired();
+            builder.Ignore(x => x.Age);
             builder.Property(x => x.DateOfBirth).IsRequired();
             builder.Property(x => x.PasswordHash).IsRequired();
+            builder.Property(x => x.RefreshTokenHash)
+                .IsRequired(false)
+                .HasMaxLength(500);
+            builder.Property(x => x.RefreshTokenExpiryTime)
+                .IsRequired(false);
         }
     }
 }
