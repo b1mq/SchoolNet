@@ -10,7 +10,7 @@ using SchoolNet.Domain.Interfaces.Repository.CommonRepositories;
 
 namespace SchoolNet.Application.Feauteres.Auth.Commands.Register
 {
-    public class RegisterCommandHandler:IRequestHandler<RegisterCommand>
+    public class RegisterCommandHandler : IRequestHandler<RegisterCommand, ResultGeneric<int>>
     {
         private readonly IUserRepository _userRepository;
         private readonly IHasherService _hashService;

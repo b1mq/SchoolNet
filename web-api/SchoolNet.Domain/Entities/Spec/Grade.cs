@@ -49,7 +49,7 @@ namespace SchoolNet.Domain.Entities.Spec
             {
                 return ResultGeneric<Grade>.Failure("Grade format is false.");
             }
-            var grade = new Grade(value.Trim(),comment,teacherId,studentid,subjectid);
+            var grade = new Grade(value.Trim(),comment!,teacherId,studentid,subjectid);
             return ResultGeneric<Grade>.Success(grade);
         }
         public Result AddComment(string comment)
