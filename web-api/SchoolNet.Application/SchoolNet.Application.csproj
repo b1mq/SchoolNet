@@ -19,8 +19,7 @@
 
   <ItemGroup>
     <Folder Include="Feauteres\Behaviors\" />
-    <Folder Include="Feauteres\Subjects\" />
-    <Folder Include="Feauteres\SchoolClasses\" />
+    <Folder Include="Feauteres\Subjects\CreateSubject\" />
     <Folder Include="Feauteres\Users\" />
   </ItemGroup>
 
