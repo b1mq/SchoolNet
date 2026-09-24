@@ -66,6 +66,16 @@ namespace SchoolNet.Domain.Entities
             var user = new User(firstName.Trim(), lastName.Trim(),  dateOfBirth, passwordHash, role,email);
             return ResultGeneric<User>.Success(user);
         }
+        public Result UpdatePasswordHash(string newPassHash)
+        {
+            if (string.IsNullOrWhiteSpace(newPassHash))
+            {
+                return Result.Failure("Password hash can not be empty");
+            }
+            PasswordHash = newPassHash;
+            UpdateTimeStamp();
+            return Result.Succes();
+        }
         public Result UpdateRefreshToken(string refreshTokenHash,DateTime expireTime)
         {
             if (string.IsNullOrWhiteSpace(refreshTokenHash))
