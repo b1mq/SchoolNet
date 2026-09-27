@@ -13,5 +13,6 @@ namespace SchoolNet.Domain.Interfaces.Repository
         Task<bool> ExistsByYearAndName(string year,string name,CancellationToken cancellation = default);
         Task<IReadOnlyCollection<SchoolClass>> GetAllAsync(CancellationToken cancellationToken = default);
         Task<IReadOnlyCollection<SchoolClass>> GetAllWithDetailsAsync(CancellationToken cancellationToken = default);
+        public  Task<SchoolClass?> GetByIdWithDetailsAsync(int id, CancellationToken cancellationToken = default);
     }
 }

@@ -41,5 +41,13 @@ namespace SchoolNet.Infrastructure.Repositories
                 .AsNoTracking()
                 .ToListAsync(cancellationToken);
         }
+        public async Task<SchoolClass?> GetByIdWithDetailsAsync(int id, CancellationToken cancellationToken = default)
+        {
+            return await _context.SchoolClasses
+                .Include(c => c.Students)
+                .Include(c => c.ClassSubjects)
+                .AsNoTracking() 
+                .FirstOrDefaultAsync(c => c.Id == id, cancellationToken);
+        }
     }
 }
