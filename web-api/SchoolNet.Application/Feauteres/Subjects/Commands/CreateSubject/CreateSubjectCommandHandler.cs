@@ -7,7 +7,7 @@ using SchoolNet.Domain.Entities.Pattern_Repository;
 using SchoolNet.Domain.Interfaces.Repository;
 using SchoolNet.Domain.Interfaces.Repository.CommonRepositories;
 
-namespace SchoolNet.Application.Feauteres.Subjects.CreateSubject
+namespace SchoolNet.Application.Feauteres.Subjects.Commands.CreateSubject
 {
     public sealed class CreateSubjectCommandHandler:IRequestHandler<CreateSubjectCommand,Result>
     {

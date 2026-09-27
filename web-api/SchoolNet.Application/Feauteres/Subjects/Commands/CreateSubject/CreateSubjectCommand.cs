@@ -4,7 +4,7 @@ using System.Text;
 using MediatR;
 using SchoolNet.Domain.Entities.Pattern_Repository;
 
-namespace SchoolNet.Application.Feauteres.Subjects.CreateSubject
+namespace SchoolNet.Application.Feauteres.Subjects.Commands.CreateSubject
 {
     public sealed record CreateSubjectCommand(string Title) : IRequest<Result>;
 }
