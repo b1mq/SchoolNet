@@ -19,7 +19,28 @@ namespace SchoolNet.Application.Feauteres.Grades.UpdateGrade
         }
         public async Task<Result> Handle(UpdateGradeCommand request,CancellationToken cancellationToken = default)
         {
-            // сделать
+            var Grade = await _gradeRepository.GetEntityById(request.GradeId);
+            if(Grade == null || Grade.isDeleted)
+            {
+                return Result.Failure("Grade Not Found" );
+            }
+            var updateRequest = Grade.UpdateGrade(request.Value);
+            if(!updateRequest.IsSuccess)
+            {
+                return Result.Failure(updateRequest.Error!);
+            }
+            if(!string.IsNullOrWhiteSpace(request.Comment))
+            {
+                var commentResult = Grade.AddComment(request.Comment);
+                if(!commentResult.IsSuccess)
+                {
+                    return Result.Failure(commentResult.Error!);
+                }
+            }
+            _gradeRepository.Update(Grade);
+            await _unitOfWork.SaveChangesAsync(cancellationToken);
+            return Result.Succes();
+
         }
     }
 }

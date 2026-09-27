@@ -29,5 +29,17 @@ namespace SchoolNet.Infrastructure.Repositories
         {
             return await _context.SchoolClasses.AnyAsync(x => x.SchoolYear == year && x.Name == name && !x.isDeleted,cancellation);
         }
+        public async Task<IReadOnlyCollection<SchoolClass>> GetAllAsync(CancellationToken cancellationToken = default)
+        {
+            return await _context.SchoolClasses.AsNoTracking().ToListAsync(cancellationToken);
+        }
+        public async Task<IReadOnlyCollection<SchoolClass>> GetAllWithDetailsAsync(CancellationToken cancellationToken = default)
+        {
+            return await _context.SchoolClasses
+                .Include(c => c.Students)      
+                .Include(c => c.ClassSubjects) 
+                .AsNoTracking()
+                .ToListAsync(cancellationToken);
+        }
     }
 }

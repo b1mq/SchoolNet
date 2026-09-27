@@ -22,7 +22,7 @@ namespace SchoolNet.Application.Feauteres.SchoolClasses.Commands.AssignStudentTo
         public async Task<Result> Handle(AssignStudentCommand request,CancellationToken cancellationToken = default)
         {
             var user = await _userRepository.GetUserByIdAsync(request.StudentId);
-            if(user == null || user.Role != Domain.Enums.UserRole.Student)
+            if(user == null || user.Role != Domain.Enums.UserRole.Student || user.isDeleted)
             {
                 return Result.Failure("This student is not exists OR User is not Student");
             }
@@ -34,7 +34,7 @@ namespace SchoolNet.Application.Feauteres.SchoolClasses.Commands.AssignStudentTo
             var assign = user.AssignToClass(request.ClassId);
             if(!assign.IsSuccess)
             {
-                return Result.Failure(assign.Error);
+                return Result.Failure(assign.Error!);
             }
             _userRepository.Update(user);
             await _unitOfWork.SaveChangesAsync(cancellationToken);
