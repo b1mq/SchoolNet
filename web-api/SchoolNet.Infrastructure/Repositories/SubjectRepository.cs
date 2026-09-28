@@ -20,5 +20,9 @@ namespace SchoolNet.Infrastructure.Repositories
         {
             return await _context.Subjects.FirstOrDefaultAsync(x => x.Title == title && !x.isDeleted,cancellationToken);
         }
+        public async Task<IReadOnlyCollection<Subject>> GetAllAsync(CancellationToken cancellationToken = default)
+        {
+            return await _context.Subjects.AsNoTracking().ToListAsync(cancellationToken);
+        }
     }
 }

@@ -9,6 +9,7 @@ namespace SchoolNet.Domain.Interfaces.Repository
     public interface ISubjectRepository:IRepository<Subject>
     {
         Task<Subject?> GetSubjectByTitleAsync(string title,CancellationToken cancellation = default);
+        Task<IReadOnlyCollection<Subject>> GetAllAsync(CancellationToken cancellationToken = default);
      
     }
 }
