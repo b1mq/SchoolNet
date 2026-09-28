@@ -19,6 +19,9 @@ namespace SchoolNet.Application.Feauteres.Subjects.Queries.GetAllSubjects
             var subjects = await _subjectRepository.GetAllAsync(cancellationToken);
             var subjectsDto = subjects.Select(s => new SubjectDto(s.Id, s.Title)).ToList();
             return ResultGeneric<IReadOnlyCollection<SubjectDto>>.Success(subjectsDto);
+
+
+
         }
     }
     
